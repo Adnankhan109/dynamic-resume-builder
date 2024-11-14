@@ -1,9 +1,10 @@
 
 "use client";
-import { jsPDF } from "jspdf";
+// import { jsPDF } from "jspdf";
 import html2pdf from "html2pdf.js";
 import { useState } from "react";
 import React from "react";
+import Image from 'next/image';
 // import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/20/solid";
 interface ResumeProps {
   resumeData: {
@@ -64,13 +65,13 @@ const ResumePreview: React.FC<ResumeProps> = ({ resumeData }) => {
           <div className="w-full md:w-1/3 p-6 text-white bg-[#163853]">
             {/* Image and Contact Information */}
             <div className="flex items-center justify-center mb-4">
-            {resumeData.profileImg && (
-                <img
-                    src={resumeData.profileImg  || 'profile.jpg'}
-                    alt="Profile"
-                    className="w-40 h-40 rounded-full border-4 border-white"
-                />
-                )}
+              <Image
+                src={resumeData?.profileImg ? resumeData.profileImg : '/profile.jpg'}  // Fallback to static image
+                alt="Profile"
+                className="w-40 h-40 rounded-full border-4 border-white"
+                width={160}  // Recommended: define width and height for Image optimization
+                height={160}
+              />
             </div>
             {/* Contact Information */}
             <div className="mt-6">

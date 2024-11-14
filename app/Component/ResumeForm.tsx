@@ -1,5 +1,5 @@
 "use client";
-import { Key, useState } from "react";
+import { useState } from "react";
 import ResumePreview from "./ResumeStrucher"; 
 
 
