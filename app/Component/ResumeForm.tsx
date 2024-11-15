@@ -1,5 +1,5 @@
 "use client";
-import { useState  } from "react";
+import { useState,useEffect  } from "react";
 import ResumePreview from "./ResumeStrucher"; 
 import React from 'react';
 
@@ -23,7 +23,7 @@ export default function ResumeForm() {
 
   const [resumeData, setResumeData] = useState<any>(null);
  
-  // const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
     
 
   // useEffect(() => {
