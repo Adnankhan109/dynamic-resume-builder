@@ -1,7 +1,10 @@
 "use client";
 import { useState,useEffect  } from "react";
-import ResumePreview from "./ResumeStrucher"; 
+
 import React from 'react';
+import dynamic from 'next/dynamic';
+const ResumePreview = dynamic(() => import('./ResumeStrucher'));
+
 
 export default function ResumeForm() {
   
@@ -24,14 +27,11 @@ export default function ResumeForm() {
   const [resumeData, setResumeData] = useState<any>(null);
  
   const [isMounted, setIsMounted] = useState(false);
-    
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     // This will ensure the code only runs in the client-side environment
-  //     setIsMounted(true);
-  //   }
-  // }, []);
+useEffect(() => {
+  setIsMounted(true);
+}, []);
+
   
   // Handlers for dynamic fields
   const addEducation = () => setEducation([...education, ""]);
@@ -317,7 +317,9 @@ export default function ResumeForm() {
             </div>
 
          </form>
-         {resumeData && <ResumePreview resumeData={resumeData} />}
+         {/* {resumeData && <ResumePreview resumeData={resumeData} />} */}
+         {isMounted && resumeData && <ResumePreview resumeData={resumeData} />}
+
          {/* {isMounted && resumeData && <ResumePreview resumeData={resumeData} />} */}
     </div>
    </div>
