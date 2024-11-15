@@ -5,6 +5,7 @@ import html2pdf from "html2pdf.js";
 import { useState } from "react";
 import React from "react";
 import Image from 'next/image';
+import { useEffect } from 'react';
 // import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/20/solid";
 interface ResumeProps {
   resumeData: {
