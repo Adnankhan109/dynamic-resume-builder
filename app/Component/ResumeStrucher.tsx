@@ -11,6 +11,7 @@
 import { useState, useEffect } from "react";
 import html2pdf from "html2pdf.js";
 import Image from "next/image";
+import { v4 as uuidv4 } from 'uuid';
 // import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/20/solid";
 interface ResumeProps {
   resumeData: {
@@ -40,8 +41,9 @@ const ResumePreview: React.FC<ResumeProps> = ({ resumeData }) => {
 
   // Generate a unique shareable link based on the filename
   const generateUniqueLink = () => {
-    const baseUrl = "https://dynamic-resume-builder.vercel.app/resume"; // Change this to your actual domain or route
-    const uniqueLink = `${baseUrl}?filename=${encodeURIComponent(resumeData.filename)}`;
+    const baseUrl = "https://dynamic-resume-builder-zeta-seven.vercel.app/resume";
+    const uniqueId = uuidv4(); // Generate a unique ID
+    const uniqueLink = `${baseUrl}?filename=${encodeURIComponent(resumeData.filename)}&id=${uniqueId}`;
     return uniqueLink;
   };
 
@@ -211,15 +213,21 @@ const ResumePreview: React.FC<ResumeProps> = ({ resumeData }) => {
       </button>
       <div>
       {resumeData.filename && (
-        <div className="mt-2 bg-red-600 border text-white text-1xl font-semibold py-1 px-1">
-          <strong>Shareable Link:</strong>
-          <p className="text-sm text-white-700 mt-1 ">
-            <a href={generateUniqueLink()} target="_blank" rel="noopener noreferrer">
-              {generateUniqueLink()}
-            </a>
-          </p>
-        </div>
-      )}
+  <div className="mt-4 bg-red-600 border text-white text-xl font-semibold py-2 px-4 rounded-md">
+    <strong>Shareable Link:</strong>
+    <p className="text-sm text-white mt-2 break-all">
+      <a 
+        href={generateUniqueLink()} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="underline hover:text-gray-300"
+      >
+        {generateUniqueLink()}
+      </a>
+    </p>
+  </div>
+)}
+
       </div>
       </div>
     </div>
