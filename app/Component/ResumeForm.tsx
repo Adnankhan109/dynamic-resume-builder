@@ -4,6 +4,7 @@ import ResumePreview from "./ResumeStrucher";
 import React from 'react';
 
 export default function ResumeForm() {
+  
   const [profileImg, setProfileImg] = useState<string | undefined>("");
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -21,9 +22,13 @@ export default function ResumeForm() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const [resumeData, setResumeData] = useState<any>(null);
-  const [isClient, setIsClient] = useState<boolean>(false);
+ 
+  const [isMounted, setIsMounted] = useState(false);
+    
+
   useEffect(() => {
-    setIsClient(true); // This ensures the code runs only on the client-side after the component is mounted
+    // This code will run only on the client-side
+    setIsMounted(true);
   }, []);
   // Handlers for dynamic fields
   const addEducation = () => setEducation([...education, ""]);
@@ -285,7 +290,7 @@ export default function ResumeForm() {
             </div>
 
          </form>
-         {resumeData && <ResumePreview resumeData={resumeData} />}
+         {isMounted && resumeData && <ResumePreview resumeData={resumeData} />}
     </div>
    </div>
   );
