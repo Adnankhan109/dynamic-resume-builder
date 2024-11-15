@@ -1,8 +1,7 @@
-import ResumeForm from "./Component/ResumeForm";
+import ResumeForm from './Component/ResumeForm';
 
-// 
-export default function Home(){
-  return(
+export default function Home() {
+  return (
     <div>
       <ResumeForm />
     </div>

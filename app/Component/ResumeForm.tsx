@@ -1,5 +1,5 @@
 "use client";
-import { useState,useEffect  } from "react";
+import { useState  } from "react";
 import ResumePreview from "./ResumeStrucher"; 
 import React from 'react';
 
@@ -23,15 +23,15 @@ export default function ResumeForm() {
 
   const [resumeData, setResumeData] = useState<any>(null);
  
-  const [isMounted, setIsMounted] = useState(false);
+  // const [isMounted, setIsMounted] = useState(false);
     
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // This will ensure the code only runs in the client-side environment
-      setIsMounted(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     // This will ensure the code only runs in the client-side environment
+  //     setIsMounted(true);
+  //   }
+  // }, []);
   
   // Handlers for dynamic fields
   const addEducation = () => setEducation([...education, ""]);
@@ -86,9 +86,34 @@ export default function ResumeForm() {
      setJobExperience(updatedJobExperience);
    };
 
-   const handleSubmit = (e: React.FormEvent) => {
+  //  const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (!validateForm()) {
+  //     return;
+  //   }
+  //   const newResumeData = {
+  //     profileImg,
+  //     phone,
+  //     email,
+  //     location,
+  //     education,
+  //     skills,
+  //     languages,
+  //     name,
+  //     profession,
+  //     professionalSummary,
+  //     expertise,
+  //     jobExperience,
+  //     filename,
+  //   };
+  //   // Update resumeData state
+  //   setResumeData(newResumeData);
+  // };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) {
+      console.log('Form validation failed');
       return;
     }
     const newResumeData = {
@@ -106,10 +131,9 @@ export default function ResumeForm() {
       jobExperience,
       filename,
     };
-    // Update resumeData state
+    console.log('Generated Resume Data:', newResumeData);
     setResumeData(newResumeData);
   };
-
   
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -293,8 +317,8 @@ export default function ResumeForm() {
             </div>
 
          </form>
-         {/* {resumeData && <ResumePreview resumeData={resumeData} />} */}
-         {isMounted && resumeData && <ResumePreview resumeData={resumeData} />}
+         {resumeData && <ResumePreview resumeData={resumeData} />}
+         {/* {isMounted && resumeData && <ResumePreview resumeData={resumeData} />} */}
     </div>
    </div>
   );
