@@ -27,9 +27,12 @@ export default function ResumeForm() {
     
 
   useEffect(() => {
-    // This code will run only on the client-side
-    setIsMounted(true);
+    if (typeof window !== 'undefined') {
+      // This will ensure the code only runs in the client-side environment
+      setIsMounted(true);
+    }
   }, []);
+  
   // Handlers for dynamic fields
   const addEducation = () => setEducation([...education, ""]);
   const addSkill = () => setSkills([...skills, ""]);
@@ -290,6 +293,7 @@ export default function ResumeForm() {
             </div>
 
          </form>
+         {/* {resumeData && <ResumePreview resumeData={resumeData} />} */}
          {isMounted && resumeData && <ResumePreview resumeData={resumeData} />}
     </div>
    </div>
