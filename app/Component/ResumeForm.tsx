@@ -1,8 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState,useEffect  } from "react";
 import ResumePreview from "./ResumeStrucher"; 
-
-
+import React from 'react';
 
 export default function ResumeForm() {
   const [profileImg, setProfileImg] = useState<string | undefined>("");
@@ -22,8 +21,10 @@ export default function ResumeForm() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const [resumeData, setResumeData] = useState<any>(null);
-  
-
+  const [isClient, setIsClient] = useState<boolean>(false);
+  useEffect(() => {
+    setIsClient(true); // This ensures the code runs only on the client-side after the component is mounted
+  }, []);
   // Handlers for dynamic fields
   const addEducation = () => setEducation([...education, ""]);
   const addSkill = () => setSkills([...skills, ""]);
